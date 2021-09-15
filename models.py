@@ -6,14 +6,41 @@ from settings import JINJA_ENV
 DATE_FORMAT = '%B %Y'
 
 
-class ResumeEntry(object):
+def render_list(templates):
+    return [t.render() for t in templates]
+
+
+class JinjaTemplate(object):
     TEMPLATE_NAME = None
 
     def __init__(self):
-        super(ResumeEntry, self).__init__()
+        super().__init__()
 
         self.template = JINJA_ENV.get_template(self.TEMPLATE_NAME)
 
+
+class Resume(JinjaTemplate):
+    TEMPLATE_NAME = 'resume.html'
+
+    def __init__(self, full_name, contact_info, experiences, skills, educations):
+        super().__init__()
+
+        self.full_name = full_name
+        self.contact_info = contact_info
+        self.experiences = experiences
+        self.skills = skills
+        self.educations = educations
+
+    def render(self):
+        return self.template.render(
+            full_name=self.full_name,
+            contact_info=self.contact_info,
+            experiences=self.experiences,
+            educations=self.educations,
+            skills=self.skills
+        )
+
+class ResumeEntry(JinjaTemplate):
     def _start_and_end(self):
         start_formatted = self.start.strftime(DATE_FORMAT)
 

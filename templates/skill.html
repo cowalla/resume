@@ -1,6 +1,6 @@
-{{ overarching_skill }}
+{{ skill.overarching_skill }}
 <ul>
-    {% for skill in subskills %}
-       <li>{{ skill }}</li>
+    {% for subsk in skill.subskills %}
+       <li>{{ subsk }}</li>
     {% endfor %}
 </ul>

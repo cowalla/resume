@@ -1,0 +1,22 @@
+<div>
+    <h1>{{ full_name }}</h1>
+    <h4>{{ contact_info }}</h4>
+    <div>
+        <h2>experience</h2>
+        {% for experience in experiences %}
+            <li>{% include "experience.html" %}</li>
+        {% endfor %}
+    </div>
+    <div>
+        <h2>education</h2>
+        {% for education in educations %}
+            <li>{% include "education.html" %}</li>
+        {% endfor %}
+    </div>
+    <div>
+        <h2>skills</h2>
+        {% for skill in skills %}
+            <li>{% include "skill.html" %}</li>
+        {% endfor %}
+    </div>
+</div>
